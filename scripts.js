@@ -7,7 +7,6 @@ let teamOnesTurn;
 let answer = [];
 let random_index;
 let userAnswer;
-let answerIndex = 0;
 // determine who plays first
 function playFirst() {
     if (whoseTurn === 1) {
@@ -24,7 +23,6 @@ function playFirst() {
 // }
 
 function selectCategory() {
-    answerIndex++;
     let url = $(this).attr("name");
     $(".trivia_question").empty();
     $.ajax({
@@ -34,18 +32,17 @@ function selectCategory() {
     }).done(function(response) {
         random_index = Math.floor((Math.random() * response.clues.length));
         $(".trivia_question").append("<p>" + response.clues[random_index].question + "</p>");
-        answer[answerIndex] = response.clues[random_index].answer;
+        answer = response.clues[random_index].answer;
         console.log("answer", answer);
     });
     $("button").click(function() {
-        console.log("answer index", answerIndex);
-        if (answer[answerIndex] == $("input").val()) {
+        if (answer == $("input").val()) {
             if(teamOnesTurn) {
-                teamOneScore = teamOneScore + (answerIndex - (answerIndex - 1));
+                teamOneScore++;
                 $(".trivia_question").empty();
                 console.log("teamone: " + teamOneScore);
             } else {
-                teamTwoScore = teamTwoScore + (answerIndex - (answerIndex - 1));
+                teamTwoScore++;
                 $(".trivia_question").empty();
                 console.log("teamtwo: " + teamTwoScore);
             }
