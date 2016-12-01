@@ -4,32 +4,45 @@
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Bungee+Inline|Cinzel|Exo+2|Lobster|Russo+One" rel="stylesheet">
         <title>Matt's Trivia</title>
     </head>
     <body>
-        <h1 class="welcome">Welcome to Trivia!</h1>
+        <div class="container">
+    <div class="scores">
+                <div class="teamOne">
+                    <p class="team">Team One</p>
+                    <p class="scoreOne"></p>
+                </div>
+                <div class="teamTwo">
+                    <p class="team">Team Two</p>
+                    <p class="scoreTwo"></p>
+                </div>
+            </div>
+            <h1 class="welcome">Welcome to Trivia!</h1>
 
-        <div class="wrapper">
+            <div class="wrapper">
 
-            <!-- links are the API calls to respective categories -->
-            <ul class="categories">
-                <a id="potpourri" name="http://jservice.io/api/category?id=306" href="#"><li>Potpourri</li></a>
-                <a id="sports"name="http://jservice.io/api/category?id=42" href="#"><li>Sports</li></a>
-                <a id="history" name="http://jservice.io/api/category?id=780" href="#"><li>American History</li></a>
-                <a name="http://jservice.io/api/category?id=21" href="#"><li>Animals</li></a>
-                <a name="http://jservice.io/api/category?id=25" href="#"><li>Science</li></a>
-                <a name="http://jservice.io/api/category?id=442" href="#"><li>People</li></a>
-            </ul>
-        </div>
+                <!-- links are the API calls to respective categories -->
+                <div class="categories">
+                    <a id="potpourri" name="http://jservice.io/api/category?id=306" href="#"><p>Potpourri</p></a>
+                    <a id="sports"name="http://jservice.io/api/category?id=42" href="#"><p>Sports</p></a>
+                    <a id="history" name="http://jservice.io/api/category?id=780" href="#"><p>American History</p></a>
+                    <a name="http://jservice.io/api/category?id=21" href="#"><p>Animals</p></a>
+                    <a name="http://jservice.io/api/category?id=25" href="#"><p>Science</p></a>
+                    <a name="http://jservice.io/api/category?id=442" href="#"><p>People</p></a>
+                </div>
+            </div>
 
 
-        <div class="trivia_question"></div>
+            <div class="trivia_question"></div>
 
-        <div class="answerBox">
-            <input id="user-answer" type="text" name="answer" value="">
-            <br>
-            <button id="submit" type="button" name="button">Submit Answer</button>
-        </div>
+            <div class="answerBox">
+                <input id="user-answer" type="text" name="answer" value="">
+                <br>
+                <button id="submit" type="button" name="button">Submit Answer</button>
+            </div>
+    </div>
 
     <script src="scripts.js"></script>
     </body>
