@@ -8,14 +8,14 @@
         <title>Matt's Trivia</title>
     </head>
     <body>
-        <center>
+    <div class="audio">
     <audio autoplay controls loop>
 
         <source src="assets/Jeopardy-theme-song.mp3" type="audio/mp3">
 
     Please upgrade your browser!
 
-    </audio>
+</div>
 </center>
         <div class="container">
     <div class="scores">
@@ -52,6 +52,18 @@
                 <button id="submit" type="button" name="button">Submit Answer</button>
             </div>
     </div>
+
+    <audio id="point">
+        <source src="assets/cheer.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="fail">
+        <source src="assets/fail.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="win">
+        <source src="assets/tada.mp3" type="audio/mp3">
+    </audio>
 
     <script src="scripts.js"></script>
     </body>

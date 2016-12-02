@@ -7,6 +7,10 @@ let teamOnesTurn;
 let answer;
 let random_index;
 let userAnswer;
+let pointSound = $('#point')[0];
+let fail = $('#fail')[0];
+let win = $('#win')[0];
+
 // determine who plays first
 function playFirst() {
     if (whoseTurn === 1) {
@@ -29,16 +33,17 @@ function resetScores(){
     $(".scoreTwo").html(teamTwoScore);
 }
 
+function changeTeams() {
+    $(".trivia_question").empty();
+    $("input").val("");
+    $(".teamTwo").toggleClass("activeTeam");
+    $(".teamOne").toggleClass("activeTeam");
+}
+
 function resetQuestionAnswer(){
     $(".trivia_question").empty();
     $("input").val("");
 }
-
-// function checkAnswer(answer) {
-//     console.log(answer);
-//     userAnswer = document.getElementsByTagName("input").value;
-//     console.log(userAnswer);
-// }
 
 function selectCategory() {
     let url = $(this).attr("name");
@@ -63,37 +68,48 @@ $("a").on("click", selectCategory);
 
 $("#submit").on("click",function() {
     if (answer.toLowerCase().replace(/[\\\-\/!@,#"'$.%^&*()]/g, '').replace(/<i>/g, "").replace("</i>i>", "") == $("input").val().toLowerCase().replace(/[\\\-\/!@,#"'$.%^&*()]/g, '')) {
+
         if(teamOnesTurn) {
             teamOneScore++;
+            pointSound.play();
             if(teamOneScore >= winningScore) {
+                $('audio').each(function(){
+                    this.pause(); // Stop playing
+                    this.currentTime = 0; // Reset time
+                });
                 alert("Congrats! Team One has won!");
+                win.play()
                 resetScores();
             }
             $(".scoreOne").html(teamOneScore);
             resetQuestionAnswer();
         } else {
             teamTwoScore++;
+            pointSound.play();
             if(teamTwoScore >= winningScore) {
+                $('audio').each(function(){
+                    this.pause(); // Stop playing
+                    this.currentTime = 0; // Reset time
+                });
                 alert("Congrats! Team Two has won!");
+                win.play()
                 resetScores();
             }
             $(".scoreTwo").html(teamTwoScore);
             resetQuestionAnswer();
         }
     } else {
-        alert("Sorry, that was incorrect. The correct answer was "+ answer + ".  It is the other teams turn.");
+        $(".trivia_question").empty();
+        fail.play();
+
         if (teamOnesTurn) {
             teamOnesTurn = false;
-            $(".trivia_question").empty();
-            $("input").val("");
-            $(".teamTwo").toggleClass("activeTeam");
-            $(".teamOne").toggleClass("activeTeam");
+            changeTeams();
+            $(".trivia_question").append("<p class='questionBox'>Sorry, that was incorrect. The correct answer was " + answer + ".  It is the other teams turn.");
         } else {
             teamOnesTurn = true;
-            $(".trivia_question").empty();
-            $("input").val("");
-            $(".teamTwo").toggleClass("activeTeam");
-            $(".teamOne").toggleClass("activeTeam");
+            changeTeams();
+            $(".trivia_question").append("<p class='questionBox'>Sorry, that was incorrect. The correct answer was " + answer + ".  It is the other teams turn.");
         }
     }
 });
