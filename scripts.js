@@ -67,7 +67,7 @@ $("a").on("click", selectCategory);
 // compare users answer on submit to questions answer
 
 $("#submit").on("click",function() {
-    if (answer.toLowerCase().replace(/[\\\-\/!@,#"'$.%^&*()]/g, '').replace(/<i>/g, "").replace("</i>i>", "").includes($("input").val().toLowerCase().replace(/[\\\-\/!@,#"'$.%^&*()]/g, ''))) {
+    if (answer.includes($("input").val().toLowerCase().replace(/[\\\-\/!@,#"'$.%^&*()]/g, ''))) {
 
         if(teamOnesTurn) {
             teamOneScore++;
